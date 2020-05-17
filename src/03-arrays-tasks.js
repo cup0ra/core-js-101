@@ -1,7 +1,10 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-undef */
 /* eslint-disable array-callback-return */
 /* eslint-disable consistent-return */
-/* eslint-disable no-return-assign */
+
 
 /* ********************************************************************************************
  *                                                                                            *
@@ -256,7 +259,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-  return arr.filter((i, index) => index % 2 !== 0);
+  return arr.filter((_i, index) => index % 2 !== 0);
 }
 
 
@@ -465,8 +468,8 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return [...Array(n)].map((e, i, a) => a.map(() => +!(i--)));
 }
 
 /**
@@ -497,8 +500,8 @@ function getIntervalArray(start, end) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return arr.filter((v, i, a) => a.indexOf(v) === i);
 }
 
 /**
