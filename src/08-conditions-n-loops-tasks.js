@@ -1,7 +1,5 @@
-/* eslint-disable no-continue */
-/* eslint-disable no-shadow */
-/* eslint-disable radix */
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-continue */
 /* *************************************************************************************************
  *                                                                                                *
  * Plese read the following tutorial before implementing tasks:                                   *
@@ -167,7 +165,7 @@ function doRectanglesOverlap(rect1, rect2) {
  */
 function isInsideCircle(circle, point) {
   return ((point.x - circle.center.x) * (point.x - circle.center.x))
-  + ((point.y - circle.center.y) * (point.y - circle.center.y)) < (circle.radius * circle.radius);
+    + ((point.y - circle.center.y) * (point.y - circle.center.y)) < (circle.radius * circle.radius);
 }
 
 
@@ -215,8 +213,11 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  if (isStartIncluded && isEndIncluded) { return `[${a > b ? b : a}, ${b < a ? a : b}]`; }
+  if (isStartIncluded && !isEndIncluded) { return `[${a > b ? b : a}, ${b < a ? a : b})`; }
+  if (!isStartIncluded && isEndIncluded) { return `(${a > b ? b : a}, ${b < a ? a : b}]`; }
+  return `(${a > b ? b : a}, ${b < a ? a : b})`;
 }
 
 
@@ -274,8 +275,13 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(cnn) {
+  return [...cnn.toString()].reverse().reduce((a, b, i) => {
+    let e = +b;
+    if (i % 2) e *= 2;
+    if (e > 9) e -= 9;
+    return a + e;
+  }, 0) % 10 === 0;
 }
 
 /**
@@ -293,10 +299,7 @@ function isCreditCardNumber(/* ccn */) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-  if (num < 10) {
-    return num;
-  }
-  return getDigitalRoot(String(num).split('').reduce((sum, val) => sum + +val, 0));
+  return (num < 10) ? num : getDigitalRoot(String(num).split('').reduce((a, b) => a + +b, 0));
 }
 
 
