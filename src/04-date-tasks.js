@@ -1,5 +1,4 @@
-/* eslint-disable radix */
-/* eslint-disable no-nested-ternary */
+
 /* *******************************************************************************************
  *                                                                                           *
  * Plese read the following tutorial before implementing tasks:                              *
@@ -83,12 +82,8 @@ function timeSpanToString(startDate, endDate) {
   hours = hours < 10 ? `0${hours}` : hours;
   minutes = minutes < 10 ? `0${minutes}` : minutes;
   seconds = seconds < 10 ? `0${seconds}` : seconds;
-  milliseconds = milliseconds < 100 && milliseconds > 10
-    ? `0${milliseconds}`
-    : milliseconds < 10
-      ? `00${milliseconds}`
-      : milliseconds;
-
+  if (milliseconds < 100 && milliseconds > 10) milliseconds = `0${milliseconds}`;
+  if (milliseconds < 10) milliseconds = `00${milliseconds}`;
   return `${hours}:${minutes}:${seconds}.${milliseconds}`;
 }
 
